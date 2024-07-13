@@ -1,0 +1,76 @@
+<div class="container">
+    <h2>Stock Transactions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Stock Name</th>
+          <th>Quantity</th>
+          <th>LTP</th>
+          <th>Amount</th>
+          <th>Brokerage</th>
+          <th>TAX</th>
+          <th>BUY/SELL</th>
+          <th>Profit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions; trackBy: trackByTransaction">
+          <td>{{ transaction.date}}</td>
+          <td>{{ transaction.stockName }}</td>
+          <td>{{ transaction.quantity }}</td>
+          <td>{{ transaction.ltp }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.brokerage }}</td>
+          <td>{{ transaction.tax }}</td>
+          <td>{{ transaction.buySell }}</td>
+          <td>{{ transaction.profit}}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <h3>Add New Transaction</h3>
+    <form (submit)="addTransaction(); $event.preventDefault()" class="form">
+      <div class="form-group">
+        <label>Date:</label>
+        <input [(ngModel)]="newTransaction.date" type="date" name="date" required />
+      </div>
+      <div class="form-group">
+        <label>Stock Name:</label>
+        <input [(ngModel)]="newTransaction.stockName" type="text" name="stockName" required />
+      </div>
+      <div class="form-group">
+        <label>Quantity:</label>
+        <input [(ngModel)]="newTransaction.quantity" type="number" name="quantity" required />
+      </div>
+      <div class="form-group">
+        <label>LTP:</label>
+        <input [(ngModel)]="newTransaction.ltp" type="number" name="ltp" step="0.01" required />
+      </div>
+      <div class="form-group">
+        <label>Amount:</label>
+        <input [(ngModel)]="newTransaction.amount" type="number" name="amount" step="0.01" required />
+      </div>
+      <div class="form-group">
+        <label>Brokerage:</label>
+        <input [(ngModel)]="newTransaction.brokerage" type="number" name="brokerage" step="0.01" required />
+      </div>
+      <div class="form-group">
+        <label>TAX:</label>
+        <input [(ngModel)]="newTransaction.tax" type="number" name="tax" step="0.01" required />
+      </div>
+      <div class="form-group">
+        <label>BUY/SELL:</label>
+        <select [(ngModel)]="newTransaction.buySell" name="buySell" required>
+          <option value="BUY">BUY</option>
+          <option value="SELL">SELL</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Profit:</label>
+        <input [(ngModel)]="newTransaction.profit" type="number" name="profit" step="0.01" required />
+      </div>
+      <button type="submit" class="btn">Add Transaction</button>
+    </form>
+  </div>
+  
